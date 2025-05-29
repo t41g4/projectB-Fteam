@@ -16,7 +16,7 @@
 <body>
     {% block header %}
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <nav class="navbar navbar navbar-expand-lg navbar-dark" style="background-color: #fca5a5;">
             <div class="container-fluid">
               {% block pagelogo %}
               <a class="navbar-brand" href="/"><i class="bi bi-search"></i> 拾得物管理システム</a>
@@ -54,8 +54,8 @@
     {% block content %}{% endblock %}
       
     {% block footer %}
-    <footer class="fixed-bottom bg-success text-light text-end">
-        <div>文教大学 情報学部 情報システム学科 プロジェクト演習BC</div>
+    <footer class="fixed-bottom text-light text-end" style="background-color: #fca5a5">
+      <div>文教大学 情報学部 情報システム学科 プロジェクト演習BC</div>
     </footer>
     {% endblock %}
 
