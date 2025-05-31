@@ -1,109 +1,159 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>拾得物管理システム</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8">
+    <title>遺失物検索依頼一覧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f3f4f6;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header input {
+            padding: 5px;
+            font-size: 16px;
+            width: 250px;
+            background: #dbeafe;
+            border: 1px solid #999;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #e7b4ae;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .photo {
+            background: #fff;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .details {
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <nav class="navbar navbar navbar-expand-lg navbar-dark" style="background-color: #fca5a5;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"><i class="bi bi-search"></i> 拾得物管理システム</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">拾得物登録機能</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">拾得者（ユーザ）登録 <i class="bi bi-person"></i></a></li>
-                                <li><a class="dropdown-item" href="#">拾得物登録 <i
-                                            class="bi bi-file-earmark-arrow-up"></i></a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">拾得物検索機能</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">拾得物検索 <i class="bi bi-search"></i></a></li>
-                                <li><a class="dropdown-item" href="#">遺失物捜索依頼 <i
-                                            class="bi bi-file-earmark-check"></i></a></li>
-                                <li><a class="dropdown-item" href="#">遺失物捜索一覧 <i class="bi bi-table"></i></a></li>
-                                <li><a class="dropdown-item" href="#">帳票ダウンロード <i class="bi bi-download"></i></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- ↓↓↓ ここに追記 ↓↓↓ -->
-    <main class="container my-4">
-        <div class="d-flex justify-content-between align-items-center bg-light p-3 border mb-4">
-            <h5 class="mb-0">管理者ページ &gt; 遺失物検索依頼一覧</h5>
-            <div>
-                <label class="me-2">遺失物ID：</label>
-                <input type="text" class="form-control d-inline-block" style="width: 200px;">
+    <div class="header">
+        <h2>管理者ページ &gt; 遺失物検索依頼一覧</h2>
+        <div>
+            <label>遺失物ID：</label>
+            <input type="text">
+        </div>
+    </div>
+
+    <div class="card-container">
+        <!-- 1枚目 -->
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
             </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <!-- カードの繰り返し -->
-            <div class="col">
-                <div class="card h-100 border-0" style="background-color: #fbc4c4;">
-                    <div class="card-body d-flex align-items-center justify-content-center bg-white"
-                        style="height: 150px;">
-                        写真
-                    </div>
-                    <div class="card-footer bg-danger bg-opacity-25 text-dark">
-                        ・特徴<br>・落ちてた場所
-                    </div>
-                </div>
+        <!-- 以下繰り返し -->
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
             </div>
-
-            <!-- 以下、必要数カードをコピペ -->
-            <div class="col">
-                <div class="card h-100 border-0" style="background-color: #fbc4c4;">
-                    <div class="card-body d-flex align-items-center justify-content-center bg-white"
-                        style="height: 150px;">
-                        写真
-                    </div>
-                    <div class="card-footer bg-danger bg-opacity-25 text-dark">
-                        ・特徴<br>・落ちてた場所
-                    </div>
-                </div>
-            </div>
-
-            <!-- 必要に応じてさらに繰り返し -->
         </div>
-    </main>
-    <!-- ↑↑↑ ここまで追記 ↑↑↑ -->
 
-    <footer class="fixed-bottom text-light text-end" style="background-color: #fca5a5">
-        <div>文教大学 情報学部 情報システム学科 プロジェクト演習BC</div>
-    </footer>
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous">
-    </script>
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="photo">写真</div>
+            <div class="details">
+                ・特徴<br>
+                ・落ちてた場所
+            </div>
+        </div>
+    </div>
+
 </body>
-
 </html>
+
 
   
