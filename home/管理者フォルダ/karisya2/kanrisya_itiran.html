@@ -10,13 +10,15 @@
     <style>
       .category {
         border-radius: 5px; /*丸みをつける*/
-        width: 200px;
-        height: 800px;
+        width: 200px; /*幅を200pxに指定*/
+        height: 800px; /*高さを800pxに指定*/
         background-color: #bebebe; /*背景色をライトグレーに指定*/
         border: #000; /*枠線を黒に指定*/
       }
       .item_card {
-        background-color: #ff828c;
+        background-color: #ff828c; /*背景色をピンク色に指定*/
+        width: 300px; /*幅を300pxに指定*/
+        height: 200px; /*高さを200pxに指定*/
       }
     </style>
   </head>
@@ -69,47 +71,47 @@
             <li><a href="#" class="filter-btn" data-category="pencilcase">筆箱</a></li>
           </u1>
         </div>
-      </div>
 
       <!--以下アイテムカード-->
-      <dib class="col-md-9">
-        <div class="row row-cols-2 row-cols-xl-4" id="card-container">
-          <!-- カード例 -->
-          <div class="col item wallet">
-            <div class="card item_card">
-              <div class="card-body">
-                <h5 class="card-title">財布</h5>
-                <p class="card-text">駅で拾得</p>
+        <dib class="col-md-9">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="card-container">
+            <!-- カード例 -->
+            <div class="col item wallet">
+              <div class="card item_card">
+                <div class="card-body">
+                  <h5 class="card-title">財布</h5>
+                  <p class="card-text">駅で拾得</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col item phone">
-            <div class="card item_card">
-              <div class="card-body">
-                <h5 class="card-title">スマートフォン</h5>
-                <p class="card-text">カフェで拾得</p>
+            <div class="col item phone">
+              <div class="card item_card">
+                <div class="card-body">
+                  <h5 class="card-title">スマートフォン</h5>
+                  <p class="card-text">カフェで拾得</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col item key">
-            <div class="card item_card">
-              <div class="card-body">
-                <h5 class="card-title">鍵</h5>
-                <p class="card-text">図書館で拾得</p>
+            <div class="col item key">
+              <div class="card item_card">
+                <div class="card-body">
+                  <h5 class="card-title">鍵</h5>
+                  <p class="card-text">図書館で拾得</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col item wallet">
-            <div class="card item_card">
-              <div class="card-body">
-                <h5 class="card-title">財布</h5>
-                <p class="card-text">学校で拾得</p>
+            <div class="col item wallet">
+              <div class="card item_card">
+                <div class="card-body">
+                  <h5 class="card-title">財布</h5>
+                  <p class="card-text">学校で拾得</p>
+                </div>
               </div>
             </div>
+          <!-- 必要に応じてさらにカードを追加 -->
           </div>
-        <!-- 必要に応じてさらにカードを追加 -->
-        </div>
-      </dib>
+        </dib>
+      </div>
     </div>
 
   <!--以下フィルターの動作-->
