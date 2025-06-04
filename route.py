@@ -21,7 +21,7 @@ def create_route(app):
 
     @app.route("/item_detail")
     def item_detail():
-        return render_template("item_detail.html")
+        return render_template("syousai.html")
 
     @app.route("/reg_user")
     def reg_user():
