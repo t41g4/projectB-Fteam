@@ -20,6 +20,12 @@
         height: 400px; /*縦を400pxに指定*/
         background-color: #ff828c; /*背景色をピンク色に指定*/
       }
+      .button{
+        width: 600px; /*幅を600pxに指定*/
+        height: 75px; /*縦を75pxに指定*/
+        display: flex; /*横並びにする*/
+        gap: 20px; /*ボタン同士の間隔を20pxに指定*/
+      }
     </style>
 </head>
 
@@ -56,25 +62,27 @@
     </header>
 
     <div class="container-fluid mt-4">
-        <div class="row">
+      <div class="row">
             <!--以下カテゴリ検索-->
-            <div class="category p-3">
+            <div class="col-md-3">
+              <div class="category p-3">
                 <h3>カテゴリー検索</h3>
-                <u1 class="list-unstyled">
+                <ul class="list-unstyled">
                     <li><a href="#" class="filter-btn" data-category="all">すべて表示</a></li>
                     <li><a href="#" class="filter-btn" data-category="wallet">財布</a></li>
                     <li><a href="#" class="filter-btn" data-category="phone">携帯電話</a></li>
                     <li><a href="#" class="filter-btn" data-category="key">鍵</a></li>
                     <li><a href="#" class="filter-btn" data-category="umbrella">傘</a></li>
                     <li><a href="#" class="filter-btn" data-category="pencilcase">筆箱</a></li>
-                </u1>
+                </ul>
             </div>
         </div>
         <!--以上カテゴリ検索-->
 
-        <!--以下詳細情報-->
+        <!--以下メインコンテンツ-->
         <div class="col-md-9">
-            <div class="container">
+          <!--以下詳細情報-->
+            <div class="main_cade p-3">
                 <div class="text-center md-4">
                     <img src="url" alt="アイテム画像" class="img-fluid rounded" style="max-height: 300px;">
                 </div>
@@ -104,8 +112,15 @@
                     </div>
                 </div>
             </div>
+            <!--以上詳細情報-->
+            <!--以下状態表示・削除ボタン-->
+            <div class="button mt-4">
+              <button type="button" class="btn btn-primary w-50">引き渡し済み</button>
+              <button type="button" class="btn btn-danger w-50">削除</button>
+            </div>
+            <!--以上状態表示・削除ボタン-->
         </div>
-        <!--以上詳細情報-->
+        <!--以上メインコンテンツ-->
     </div>
 
     <footer class="fixed-bottom text-light text-end" style="background-color: #fca5a5">
