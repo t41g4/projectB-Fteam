@@ -31,9 +31,20 @@ def create_route(app):
     def reg_item():
         return render_template("reg_item.html")
 
-    @app.route("/req_item")
-    def req_item():
-        return render_template("req_item.html")
+    @app.route("/reg_item", methods=["GET","POST"])
+    def reg_item():
+        if request.method == "POST":
+            file = request.files["img"]
+            d= {
+                "拾得物分類ID":request.form.get("category"),
+                "拾得場所":request.form.get("place"),
+                "色":request.form.get("color"),
+                "特徴":request.form.get("spec"),
+                "ユーザID":request.form.get("user"),
+            }
+            controller.item_reg(d, file)
+            return redirect("/reg_item")
+        return controller.item_form()
 
     @app.route("/req_list")
     def req_list():
