@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}拾得物一覧ページ{% endblock %}
+
+{% block style %}
+{{ super() }}
+<style>
+  .fixed-box {
+    position: fixed;
+    top: 160px;
+    left: 30px;
+    width: 250px;
+    height: 800px;
+    background-color: #fca5a5;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+  .main-content {
+    margin-left: 300px;
+    padding-top: 40px;
+  }
+  @media (max-width: 768px) {
+    .fixed-box {
+      display: none;
+    }
+    .main-content {
+      margin-left: 0;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container-fluid">
+    <!-- 固定ボックス -->
+    <div class="fixed-box">
+      <h5>カテゴリ</h5>
+      <p></p>
+    </div>
+
+    <!-- メインのカード部分 -->
+    <div class="main-content">
+      <h1 class="text-center mb-4">拾得物一覧</h1>
+      <div class="row row-cols-2 row-cols-xl-4 g-4" id="card-container"></div>
+      <nav aria-label="ページ送りの実例" class="d-flex justify-content-center my-4">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">前へ</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">次へ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script>
+  $(function () {
+    const $container = $('#card-container');
+    for (let i = 1; i <= 20; i++) {
+      const cardHtml = `
+        <div class="col">
+          <div class="card">
+            <img src="https://via.placeholder.com/150" alt="カード画像" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">カードのタイトル${i}</h5>
+              <p class="card-text">これはカード${i}の説明文です。</p>
+            </div>
+          </div>
+        </div>
+      `;
+      $container.append(cardHtml);
+    }
+  });
+</script>
+{% endblock %}
