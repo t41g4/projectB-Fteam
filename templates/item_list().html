@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}拾得物一覧ページ{% endblock %}
+
+{% block style %}
+{{ super() }}
+<style>
+  .fixed-box {
+    position: fixed;
+    top: 160px;
+    left: 30px;
+    width: 250px;
+    height: 800px;
+    background-color: #fca5a5;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .main-content {
+    margin-left: 300px;
+    padding-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .fixed-box {
+      display: none;
+    }
+
+    .main-content {
+      margin-left: 0;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container-fluid">
+    <!-- 固定ボックス -->
+    <div class="fixed-box">
+      <h5>カテゴリ</h5>
+      <p></p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col mt-3">
+          <p class="h2 p-1  bg-success w-50 rounded text-center text-white">拾得物検索</p>
+          <p class="bg-light p-1 border m-0">
+            拾得物検索機能では，文教大学湘南キャンパスの拾得物について，届けられているものを検索する機能です．検索キーワードから物品名を入力して検索してください．検索結果の件数と一覧が表形式で一覧表示されます．詳細を確認するには，詳細を選択してください．
+          </p>
+          <hr>
+          <form action="{{url_for('item_list')}}" method="POST">
+            物品名<input type="text" name="key">
+            <button type="submit" class="btn btn-success">検索</button>
+          </form>
+        </div>
+      </div>
+    <div class="row mt-3">
+      <div class="col">
+        <span id="ritems">検索結果：{{n}}件</span>
+      </div>
+    </div>
+        <!-- メインのカード部分 -->
+        <div class="main-content">
+          <h1 class="text-center mb-4">拾得物一覧</h1>
+          <div class="row row-cols-2 row-cols-xl-4 g-4">
+            {% for i in j %}
+            <div class="col">
+              <div class="card">
+                <a href="/item_detail?id={{i.拾得物ID}}">
+                  <img src="https://via.placeholder.com/150" alt="カード画像" class="card-img-top">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">{{i.物品名}}</h5>
+                  <p class="card-text">{{i.拾得場所}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+</main>
+{% endblock %}
+{% endblock %}
