@@ -24,6 +24,7 @@ class ユーザ(db.Model):
 class 所属(db.Model):
     __tablename__ = "所属"
     ID = db.Column(db.Integer, primary_key = True)
+    所属分類 = db.Column(db.String(50))
     所属名 = db.Column(db.String(100))
 class 拾得物(db.Model):
     __tablename__ = "拾得物"
