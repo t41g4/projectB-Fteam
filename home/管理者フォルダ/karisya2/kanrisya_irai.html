@@ -60,7 +60,10 @@
             font-size: 14px;
             line-height: 1.6;
         }
-        a{color: black;}
+
+        a {
+            color: black;
+        }
 
         @media screen and (max-width: 768px) {
             .card-container {
@@ -86,73 +89,22 @@
     </div>
 
     <div class="card-container">
+        {% for i in d %}
         <div class="card">
-            <div class="photo">写真</div>
+            <div class="photo">
+                {% if i["photo_url"] %}
+                    <img src="{{ i['photo_url'] }}" alt="写真" style="max-height: 100%; max-width: 100%;">
+                {% else %}
+                    写真
+                {% endif %}
+            </div>
             <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
+                ・特徴：{{ i["feature"] }}<br>
+                ・落ちてた場所：{{ i["place_found"] }}
             </div>
         </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="photo">写真</div>
-            <div class="details">
-                ・特徴<br>
-                ・落ちてた場所
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
 </body>
 </html>
-
-
-  
