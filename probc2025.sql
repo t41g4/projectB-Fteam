@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- ホスト: localhost
--- 生成日時: 2025 年 6 月 16 日 17:27
--- サーバのバージョン： 10.4.28-MariaDB
--- PHP のバージョン: 8.2.4
+-- ホスト: 127.0.0.1
+-- 生成日時: 2025-06-16 18:19:41
+-- サーバのバージョン： 10.4.32-MariaDB
+-- PHP のバージョン: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,55 +20,6 @@ SET time_zone = "+00:00";
 --
 -- データベース: `probc2025`
 --
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `ユーザ`
---
-
-CREATE TABLE `ユーザ` (
-  `ID` int(11) NOT NULL,
-  `氏名` varchar(255) DEFAULT NULL,
-  `所属ID` int(11) DEFAULT NULL,
-  `電話番号` varchar(20) DEFAULT NULL,
-  `メールアドレス` varchar(255) DEFAULT NULL,
-  `住所` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- テーブルのデータのダンプ `ユーザ`
---
-
-INSERT INTO `ユーザ` (`ID`, `氏名`, `所属ID`, `電話番号`, `メールアドレス`, `住所`) VALUES
-(1, '山田 太郎', 1, '090-1234-5678', 'yamada@example.com', '東京都千代田区1-1-1'),
-(2, '鈴木 花子', 2, '080-2345-6789', 'suzuki@example.com', '神奈川県横浜市2-2-2'),
-(3, '佐藤 次郎', 3, '070-3456-7890', 'sato@example.com', '大阪府大阪市3-3-3'),
-(4, '田中 美咲', 4, '090-4567-8901', 'tanaka@example.com', '愛知県名古屋市4-4-4'),
-(5, '高橋 健', 5, '080-5678-9012', 'takahashi@example.com', '福岡県福岡市5-5-5');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `所属`
---
-
-CREATE TABLE `所属` (
-  `ID` int(11) NOT NULL,
-  `所属分類` varchar(255) DEFAULT NULL,
-  `所属名` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- テーブルのデータのダンプ `所属`
---
-
-INSERT INTO `所属` (`ID`, `所属分類`, `所属名`) VALUES
-(1, '学科', '情報システム学科'),
-(2, '学科', '情報社会学科'),
-(3, '学科', 'データサイエンス学科'),
-(4, '教職員', '教員'),
-(5, '外部', '地域住民');
 
 -- --------------------------------------------------------
 
@@ -93,109 +44,15 @@ CREATE TABLE `拾得物` (
 --
 
 INSERT INTO `拾得物` (`ID`, `拾得物分類ID`, `拾得場所`, `色`, `特徴`, `その他の物品`, `画像`, `拾得日`, `保管期間`) VALUES
-(1, 1, '図書館', '黒', 'ブランドロゴ入りの長財布', 'なし', NULL, '2025-05-10', '2025-06-10'),
+(1, 1, '図書館', '黒', 'ブランドロゴ入りの長財布', 'なし', 'kasa.jpg', '2025-05-10', '2025-06-10'),
 (2, 2, '教室A-101', '銀色', '家の鍵3本付き', 'なし', NULL, '2025-05-15', '2025-06-15'),
 (3, 3, 'カフェテリア', '白', '画面割れあり', '充電ケーブル付き', NULL, '2025-05-20', '2025-06-20'),
 (4, 4, '体育館入口', '青', '大学のロゴ入り', 'なし', NULL, '2025-05-25', '2025-06-25'),
 (5, 5, '事務室', '赤', '高級ペン', 'なし', NULL, '2025-05-30', '2025-06-30');
 
--- --------------------------------------------------------
-
---
--- テーブルの構造 `拾得物分類`
---
-
-CREATE TABLE `拾得物分類` (
-  `ID` int(11) NOT NULL,
-  `大分類` varchar(255) DEFAULT NULL,
-  `物品名` varchar(255) DEFAULT NULL,
-  `頭1` varchar(10) DEFAULT NULL,
-  `頭2` varchar(10) DEFAULT NULL,
-  `五十音` varchar(10) DEFAULT NULL,
-  `貴重品` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- テーブルのデータのダンプ `拾得物分類`
---
-
-INSERT INTO `拾得物分類` (`ID`, `大分類`, `物品名`, `頭1`, `頭2`, `五十音`, `貴重品`) VALUES
-(1, '財布', '長財布', 'な', 'が', 'な', 1),
-(2, '鍵', '家の鍵', 'い', 'え', 'か', 0),
-(3, '電子機器', 'スマートフォン', 'す', 'ま', 'す', 1),
-(4, '書類', '学生証', 'が', 'く', 'が', 1),
-(5, '文房具', 'ペン', 'ぺ', 'ん', 'ぺ', 0);
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `拾得物管理状況`
---
-
-CREATE TABLE `拾得物管理状況` (
-  `ID` int(11) NOT NULL,
-  `管理者ID` int(11) NOT NULL,
-  `拾得物ID` int(11) NOT NULL,
-  `変更日時` date NOT NULL,
-  `変更内容` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- テーブルのデータのダンプ `拾得物管理状況`
---
-
-INSERT INTO `拾得物管理状況` (`ID`, `管理者ID`, `拾得物ID`, `変更日時`, `変更内容`) VALUES
-(1, 1, 1, '2025-05-01', 'なし'),
-(2, 2, 2, '2025-01-25', 'なし'),
-(3, 3, 3, '2025-05-14', 'なし'),
-(4, 4, 4, '2025-05-12', 'なし'),
-(5, 5, 5, '2025-05-20', 'なし'),
-(6, 6, 6, '2025-05-20', 'なし'),
-(7, 7, 7, '2025-05-20', 'なし'),
-(8, 8, 8, '2025-05-31', 'なし'),
-(9, 9, 9, '2025-05-31', 'なし'),
-(10, 10, 10, '2025-05-31', 'なし');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `遺失物捜索依頼`
---
-
-CREATE TABLE `遺失物捜索依頼` (
-  `ID` int(11) NOT NULL,
-  `氏名` varchar(50) NOT NULL,
-  `所属ID` int(11) NOT NULL,
-  `電話番号` varchar(15) NOT NULL,
-  `メールアドレス` varchar(50) NOT NULL,
-  `特徴` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- テーブルのデータのダンプ `遺失物捜索依頼`
---
-
-INSERT INTO `遺失物捜索依頼` (`ID`, `氏名`, `所属ID`, `電話番号`, `メールアドレス`, `特徴`) VALUES
-(1, '山田 太郎', 1, '090-1234-5678', 'taro.yamada@example.com', '青いリュックを持っている'),
-(2, '佐藤 花子', 2, '080-8765-4321', 'hanako.sato@example.com', 'メガネをかけている'),
-(3, '鈴木 一郎', 3, '070-1111-2222', 'ichiro.suzuki@example.com', '黒い帽子をかぶっている');
-
 --
 -- ダンプしたテーブルのインデックス
 --
-
---
--- テーブルのインデックス `ユーザ`
---
-ALTER TABLE `ユーザ`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `所属ID` (`所属ID`);
-
---
--- テーブルのインデックス `所属`
---
-ALTER TABLE `所属`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- テーブルのインデックス `拾得物`
@@ -205,39 +62,8 @@ ALTER TABLE `拾得物`
   ADD KEY `拾得物分類ID` (`拾得物分類ID`);
 
 --
--- テーブルのインデックス `拾得物分類`
---
-ALTER TABLE `拾得物分類`
-  ADD PRIMARY KEY (`ID`);
-
---
--- テーブルのインデックス `拾得物管理状況`
---
-ALTER TABLE `拾得物管理状況`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `ユーザID` (`管理者ID`);
-
---
--- テーブルのインデックス `遺失物捜索依頼`
---
-ALTER TABLE `遺失物捜索依頼`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- ダンプしたテーブルの AUTO_INCREMENT
 --
-
---
--- テーブルの AUTO_INCREMENT `ユーザ`
---
-ALTER TABLE `ユーザ`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- テーブルの AUTO_INCREMENT `所属`
---
-ALTER TABLE `所属`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- テーブルの AUTO_INCREMENT `拾得物`
@@ -246,26 +72,8 @@ ALTER TABLE `拾得物`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- テーブルの AUTO_INCREMENT `拾得物分類`
---
-ALTER TABLE `拾得物分類`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- テーブルの AUTO_INCREMENT `遺失物捜索依頼`
---
-ALTER TABLE `遺失物捜索依頼`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- ダンプしたテーブルの制約
 --
-
---
--- テーブルの制約 `ユーザ`
---
-ALTER TABLE `ユーザ`
-  ADD CONSTRAINT `ユーザ_ibfk_1` FOREIGN KEY (`所属ID`) REFERENCES `所属` (`ID`);
 
 --
 -- テーブルの制約 `拾得物`
